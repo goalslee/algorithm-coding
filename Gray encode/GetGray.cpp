@@ -1,4 +1,4 @@
-/*ÌâÄ¿£ºÊäÈëÎ»Êı£¬´òÓ¡³ö¸ñÀ×Âë*/
+/*é¢˜ç›®ï¼šè¾“å…¥ä½æ•°ï¼Œæ‰“å°å‡ºæ ¼é›·ç  Garycode*/
 
 
 
@@ -17,7 +17,7 @@ void getGray(int k,vector<string> &ret)
     auto itor=ret.end()-1;
     string temp=*itor;
     for(int i=k-1;i>-1;--i){
-        //string last=*itor; »áÊ§Ğ§£¬ÒòÎªvectorÔö´óÊ±ÁíÍâÉêÇëÄÚ´æ
+        //string last=*itor; ä¼šå¤±æ•ˆï¼Œå› ä¸ºvectorå¢å¤§æ—¶å¦å¤–ç”³è¯·å†…å­˜
         string last=temp;
         if(last.at(i)=='0') last.at(i)='1';
         else last.at(i)='0';
