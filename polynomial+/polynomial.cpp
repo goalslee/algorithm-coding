@@ -1,4 +1,4 @@
-//¶àÏîÊ½¼Ó·¨
+ï»¿//å¤šé¡¹å¼åŠ æ³•
 
 #include <iostream>
 #include <list>
