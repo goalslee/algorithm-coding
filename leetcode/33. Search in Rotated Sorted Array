@@ -1,0 +1,64 @@
+/*
+思路：看到log，基本想法就是二分；但是数组只是部分有序。怎样处理？
+1,先找出分界点下标k（数组的最小值），用二分，观察得到左边有序侧2肯定比右边有序侧1大，关键是用右侧最后值，即右边的最大值，作为比较值。不断把左边去掉（mid+1）,把右边接近，中间值比右边值大，肯定在右边；小，肯定在包含中间值的左边；最后出现221或者211
+2，rotate后的数组相当于位置（a+k）%n，所以可以在原来数组做二分，再转换找到原位置的元素
+
+-----
+注意二分 
+只能begin=mid+1，如果begin=mid。则begin与end相邻时，begin无法前进
+
+< mid;
+<= mid-1
+都是两个符号
+
+while(begin<end)时end只能=mid
+如果begin=mid+1，end=mid-1，则begin与end相邻时，end=mid-1，就会begin=end，跳出循环，没有判断begin=end情况
+
+这个还要判断数组只有一个元素的情况
+
+while(begin<=end)时end只能=mid-1，begin=mid+1
+因为begin=end时，若end=mid，会一直begin=end
+同理，           若begin=mid，会一直begin=end
+*/
+
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+        int size=nums.size();
+        int end=size-1;
+        int begin=0;
+        while(begin<end)
+        {
+            int mid=(begin+end)/2;
+            if(nums[mid]>nums[end])
+            {
+                begin=mid+1;
+            }
+            else
+            {
+                end=mid;
+            }
+        }
+        int rotate=begin;
+        end=size-1;
+        begin=0;
+        while(begin<=end)
+        {
+            int mid=(begin+end)/2;
+            int retatemid=(mid+rotate)%size;
+            if(nums[retatemid]>target)
+            {
+                end=mid-1;
+            }
+            else if(nums[retatemid]<target)
+            {
+                begin=mid+1;
+            }
+            else
+            {
+                return retatemid;
+            }
+        }
+        return -1;
+    }
+};
